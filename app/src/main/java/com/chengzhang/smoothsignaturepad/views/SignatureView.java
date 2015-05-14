@@ -15,8 +15,7 @@ import com.chengzhang.smoothsignaturepad.utils.TimedPoint;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignatureView extends View
-{
+public class SignatureView extends View {
     //View state
     private List<TimedPoint> mPoints;
     private boolean mIsEmpty;
@@ -36,8 +35,7 @@ public class SignatureView extends View
     private Bitmap mSignatureBitmap = null;
     private Canvas mSignatureBitmapCanvas = null;
 
-    public SignatureView(Context context, AttributeSet attrs)
-    {
+    public SignatureView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(
@@ -117,14 +115,13 @@ public class SignatureView extends View
         mVelocityFilterWeight = velocityFilterWeight;
     }
 
-    public void clear()
-    {
+    public void clear() {
         mPoints = new ArrayList<TimedPoint>();
         mLastVelocity = 0;
         mLastWidth = (mMinWidth + mMaxWidth) / 2;
         mPath.reset();
 
-        if( mSignatureBitmap != null ) {
+        if (mSignatureBitmap != null) {
             mSignatureBitmap = null;
             ensureSignatureBitmap();
         }
@@ -134,13 +131,11 @@ public class SignatureView extends View
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
+    public boolean onTouchEvent(MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
 
-        switch (event.getAction())
-        {
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 mPoints.clear();
@@ -173,8 +168,9 @@ public class SignatureView extends View
         return true;
     }
 
-    @Override protected void onDraw(Canvas canvas) {
-        if(mSignatureBitmap != null) {
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (mSignatureBitmap != null) {
             canvas.drawBitmap(mSignatureBitmap, 0, 0, mPaint);
         }
     }
@@ -269,7 +265,7 @@ public class SignatureView extends View
         mPaint.setStrokeWidth(originalWidth);
     }
 
-    private ControlTimedPoints calculateCurveControlPoints(TimedPoint s1, TimedPoint s2 ,TimedPoint s3) {
+    private ControlTimedPoints calculateCurveControlPoints(TimedPoint s1, TimedPoint s2, TimedPoint s3) {
         float dx1 = s1.x - s2.x;
         float dy1 = s1.y - s2.y;
         float dx2 = s2.x - s3.x;
@@ -278,13 +274,13 @@ public class SignatureView extends View
         TimedPoint m1 = new TimedPoint((s1.x + s2.x) / 2.0f, (s1.y + s2.y) / 2.0f);
         TimedPoint m2 = new TimedPoint((s2.x + s3.x) / 2.0f, (s2.y + s3.y) / 2.0f);
 
-        float l1 = (float) Math.sqrt(dx1*dx1 + dy1*dy1);
-        float l2 = (float) Math.sqrt(dx2*dx2 + dy2*dy2);
+        float l1 = (float) Math.sqrt(dx1 * dx1 + dy1 * dy1);
+        float l2 = (float) Math.sqrt(dx2 * dx2 + dy2 * dy2);
 
         float dxm = (m1.x - m2.x);
         float dym = (m1.y - m2.y);
         float k = l2 / (l1 + l2);
-        TimedPoint cm = new TimedPoint(m2.x + dxm*k, m2.y + dym*k);
+        TimedPoint cm = new TimedPoint(m2.x + dxm * k, m2.y + dym * k);
 
         float tx = s2.x - cm.x;
         float ty = s2.y - cm.y;
