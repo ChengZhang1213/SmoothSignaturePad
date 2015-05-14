@@ -1,0 +1,15 @@
+<resources>
+    <declare-styleable name="MyView">
+        <attr name="exampleString" format="string"/>
+        <attr name="exampleDimension" format="dimension"/>
+        <attr name="exampleColor" format="color"/>
+        <attr name="exampleDrawable" format="color|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="SignatureView">
+        <attr name="minWidth" format="float" />
+        <attr name="maxWidth" format="float" />
+        <attr name="penColor" format="color" />
+        <attr name="velocityFilterWeight" format="float" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.chengzhang.smoothsignaturepad.views.SignatureView android:layout_width="wrap_content"
+                                                           android:layout_height="300dp"
+                                                           android:background="@color/White"
+                                                           android:id="@+id/signatureView"
+            />
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/btn_sign"
+            android:text="签名"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/btn_clear"
+            android:text="清除"/>
+
+</LinearLayout>
